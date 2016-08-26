@@ -1,0 +1,6 @@
+coverage
+test
+example.js
+.editorconfig
+.eslintignore
+.gitignore

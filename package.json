@@ -3,10 +3,15 @@
   "version": "1.0.0",
   "description": "Logs a message to users if callback has not been called within given time",
   "main": "src/index.js",
+  "umd": "umd/bundle.min.js",
   "scripts": {
+    "build": "npm run compile && npm run minify",
+    "compile": "browserify src/index.js -o umd/bundle.js --bare --standalone=responsive-callback",
+    "minify": "uglifyjs --compress --mangle -- umd/bundle.js > umd/bundle.min.js",
     "coverage": "istanbul cover tape test/**.test.js",
     "test": "tape test/**.test.js",
-    "posttest": "eslint ."
+    "posttest": "eslint .",
+    "prepublish": "npm run build && npm run test"
   },
   "repository": {
     "type": "git",
@@ -25,10 +30,12 @@
   },
   "homepage": "https://github.com/rexxars/responsive-callback#readme",
   "devDependencies": {
+    "browserify": "^13.1.0",
     "eslint": "^3.4.0",
     "eslint-config-bengler": "^2.0.0",
     "istanbul": "^0.4.5",
-    "tape": "^4.6.0"
+    "tape": "^4.6.0",
+    "uglify-js": "^2.7.3"
   },
   "eslintConfig": {
     "extends": "bengler",

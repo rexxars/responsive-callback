@@ -16,7 +16,7 @@ module.exports = function (options, callback) {
     opts.messages = [opts.message]
   }
 
-  if (stream) {
+  if (stream && typeof window === 'undefined') {
     stream = stream === true ? process.stderr : stream
     stream = stream.isTTY ? stream : false
     opts.notifier = noop
