@@ -40,6 +40,12 @@ If `slow.site` takes more than 1500ms to respond, the `Waiting for slow site to 
 * `notifier` - Function to call instead of logging with `console.log`. The function receives the message as the first argument. Note that when there are no more messages to log, the notifier won't be called anymore.
 * `stream` - If set to `true` (or a valid TTY-stream), will write to the stream and clear old messages
 
+## Browser usage
+
+The NPM package ships with a UMD-bundle which works in browsers. You can load it from [npmcdn](https://npmcdn.com/) by referencing the `umd`-field: https://npmcdn.com/responsive-callback?main=umd
+
+It will be available under `window.responsiveCallback` or as an AMD module under `responsive-callback`.
+
 ## License
 
 MIT-licensed. See LICENSE.
