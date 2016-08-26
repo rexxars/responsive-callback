@@ -1,0 +1,46 @@
+{
+  "name": "responsive-callback",
+  "version": "1.0.0",
+  "description": "Logs a message to users if callback has not been called within given time",
+  "main": "src/index.js",
+  "scripts": {
+    "coverage": "istanbul cover tape test/**.test.js",
+    "test": "tape test/**.test.js",
+    "posttest": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rexxars/responsive-callback.git"
+  },
+  "keywords": [
+    "callback",
+    "responsive",
+    "timeout",
+    "interval"
+  ],
+  "author": "Espen Hovlandsdal <espen@hovlandsdal.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rexxars/responsive-callback/issues"
+  },
+  "homepage": "https://github.com/rexxars/responsive-callback#readme",
+  "devDependencies": {
+    "eslint": "^3.4.0",
+    "eslint-config-bengler": "^2.0.0",
+    "istanbul": "^0.4.5",
+    "tape": "^4.6.0"
+  },
+  "eslintConfig": {
+    "extends": "bengler",
+    "env": {
+      "node": true,
+      "browser": true
+    },
+    "rules": {
+      "no-var": 0,
+      "prefer-rest-params": 0,
+      "prefer-spread": 0,
+      "prefer-arrow-callback": 0
+    }
+  }
+}
