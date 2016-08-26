@@ -1,6 +1,16 @@
-/* eslint-disable id-length */
+/* eslint-disable id-length, no-empty-function */
+const PassThroughStream = require('stream').PassThrough
 const test = require('tape')
 const rspcb = require('../')
+
+const noop = () => {}
+const getStream = ({isTTY} = {}) => {
+  const stream = new PassThroughStream()
+  stream.isTTY = isTTY || false
+  stream.clearLine = noop
+  stream.cursorTo = noop
+  return stream
+}
 
 test('can take a single callback as parameter', t => {
   const result = 'foo'
@@ -35,13 +45,13 @@ test('can provide message as option prop', t => {
   setTimeout(rspcb({
     duration: 25,
     message: 'Some message',
-    notifier: (msg, it) => {
+    notifier: msg => {
+      iterations++
       t.equal(msg, 'Some message', 'uses passed message')
-      t.equal(it, ++iterations, 'iteration count correct')
     }
   }, res => {
     t.equal(res, result)
-    t.equal(iterations, 3)
+    t.equal(iterations, 1)
     t.end()
   }), 85, result)
 })
@@ -53,9 +63,9 @@ test('can provide messages as option prop', t => {
   setTimeout(rspcb({
     duration: 25,
     messages: messages,
-    notifier: (msg, it) => {
-      t.equal(msg, messages[it - 1] || messages[0], 'uses passed message')
-      t.equal(it, ++iterations, 'iteration count correct')
+    notifier: msg => {
+      iterations++
+      t.equal(msg, messages[iterations - 1], 'uses passed message')
     }
   }, t.end), 150)
 })
@@ -81,4 +91,20 @@ test('stops console.logging when out of messages', t => {
     messages: ['# first message', '# second message'],
     duration: 10
   }, t.end), 50)
+})
+
+test('can stream', t => {
+  setTimeout(rspcb({
+    messages: ['foo', 'bar', 'baz'],
+    duration: 150,
+    stream: true
+  }, t.end), 200)
+})
+
+test('does not log when passed a non-TTY stream', t => {
+  setTimeout(rspcb({
+    messages: ['foo', 'bar', 'baz'],
+    duration: 150,
+    stream: getStream({isTTY: false})
+  }, t.end), 200)
 })
