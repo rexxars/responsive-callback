@@ -42,7 +42,7 @@ If `slow.site` takes more than 1500ms to respond, the `Waiting for slow site to 
 
 ## Browser usage
 
-The NPM package ships with a UMD-bundle which works in browsers. You can load it from [npmcdn](https://npmcdn.com/) by referencing the `umd`-field: https://npmcdn.com/responsive-callback?main=umd
+The NPM package ships with a UMD-bundle which works in browsers. You can load it from [unpkg](https://unpkg.com/) by referencing the `umd`-field: https://unpkg.com/responsive-callback?main=umd
 
 It will be available under `window.responsiveCallback` or as an AMD module under `responsive-callback`.
 
