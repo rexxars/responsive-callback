@@ -1,6 +1,6 @@
 {
   "name": "responsive-callback",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Logs a message to users if callback has not been called within given time",
   "main": "src/index.js",
   "umd": "umd/bundle.min.js",
