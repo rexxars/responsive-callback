@@ -30,7 +30,7 @@ module.exports = function (options, callback) {
       return
     }
 
-    if (stream) {
+    if (stream && stream.clearLine) {
       stream.clearLine()
       stream.cursorTo(0)
       stream.write(opts.messages[iterations - 1])
@@ -49,7 +49,7 @@ module.exports = function (options, callback) {
   }, opts.duration)
 
   return function () {
-    if (stream) {
+    if (stream && stream.clearLine) {
       stream.clearLine()
       stream.cursorTo(0)
     }

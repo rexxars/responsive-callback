@@ -31,11 +31,11 @@
   "homepage": "https://github.com/rexxars/responsive-callback#readme",
   "devDependencies": {
     "browserify": "^13.1.0",
-    "eslint": "^3.4.0",
-    "eslint-config-bengler": "^2.0.0",
+    "eslint": "^4.19.1",
+    "eslint-config-bengler": "^5.0.2",
     "istanbul": "^0.4.5",
     "tape": "^4.6.0",
-    "uglify-js": "^2.7.3"
+    "uglify-js": "^3.3.20"
   },
   "eslintConfig": {
     "extends": "bengler",

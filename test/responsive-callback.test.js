@@ -12,6 +12,13 @@ const getStream = ({isTTY} = {}) => {
   return stream
 }
 
+const getNoClearLineStream = ({isTTY} = {}) => {
+  const stream = new PassThroughStream()
+  stream.isTTY = isTTY || false
+  stream.cursorTo = noop
+  return stream
+}
+
 test('can take a single callback as parameter', t => {
   const result = 'foo'
   setImmediate(rspcb(res => {
@@ -106,5 +113,13 @@ test('does not log when passed a non-TTY stream', t => {
     messages: ['foo', 'bar', 'baz'],
     duration: 150,
     stream: getStream({isTTY: false})
+  }, t.end), 200)
+})
+
+test('checks whether clearLine method exists before using it', t => {
+  setTimeout(rspcb({
+    messages: ['foo', 'bar', 'baz'],
+    duration: 150,
+    stream: getNoClearLineStream({isTTY: true})
   }, t.end), 200)
 })
